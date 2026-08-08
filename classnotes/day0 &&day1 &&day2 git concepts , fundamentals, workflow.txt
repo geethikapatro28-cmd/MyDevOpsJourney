@@ -1,0 +1,51 @@
+Day 0
+Git is a software to install in laptop.
+Git Bash is a central repo to which code is pushed in 3 steps .
+Install GIT Bash.
+Linux
+
+pwd --- present working dorectory
+
+Touch file1 file2 file3 ---- to create file through commands
+mkdir folder1 folder2   ---- to create folders/directory
+rm f1 f2                -- to remove.delete file
+rmdir folder2           ---- to remove directory
+commandds to view in linux
+ls       --regular
+ll  --detailed with access 
+ls -lrth --detailed
+la -la  ---hidden files included/.
+
+cd dir name - to goinside directory
+cd .. -- to come out of that directory --one step back
+cat f2 -- to show content in files
+history to check the total list of commands we practiced.
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+Day1
+
+git init -- intalize empty repo
+
+code will move to git in 3 steps.
+1. workspace  -- contains code /files by develope
+2. staggingindex ---  git add fnmae  moving 
+3. indexing  -- git commit 
+3. local repo git push is moved to repo. we need to check the status
+git status -- will give if any files there to add/ difference between worksapce and local repo
+git log -- will have all the commit ID's  
+git show commiiID -- this will gice what happend in that commitiD
+git config --global user.name "geet"
+git config --global user.email "geet@gmail.com"
+
+we can add username,email etc with the above 
+
+---------------------------------------------------------------
+----------------------------------------------------------------Day3 
+
+GitHub repo created 
+pushed file1 file2 from pc to git repo.
+in the intial push, it ask for gmail,password then choose email-password /pat token(git setting->deveoper settings->token classic->gice access and remove /keeep exipry and PAT created save it somewhere and use this to while trying to push).
+In our pc, our git bub mail and password will be saved in credentail manager  after 1st push. every time it will ask for the cred, if asked please provide above cred created.
+
+
+

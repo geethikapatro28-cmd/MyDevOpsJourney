@@ -78,4 +78,8 @@ branching strategy -- a main branch and take a cut from it ,create a branch work
 echo 'content to be added'  -- echo is to display text.
 echo 'adding data to file' > filename -- to add data to file.
 cat filename -- wil give the data inside file on console.
+when given git log. if head->banch is the branch ahead of other main branch
+
+to send/push the branch created or data to the creted branch ,.command .
+git push origin/gitURL branchnameeg: git push origin windowsbranch
 

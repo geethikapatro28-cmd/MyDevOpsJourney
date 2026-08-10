@@ -15,6 +15,7 @@ ls       --regular
 ll  --detailed with access 
 ls -lrth --detailed
 la -la  ---hidden files included/.
+la  -lart -- detailed with hidden!?
 
 cd dir name - to goinside directory
 cd .. -- to come out of that directory --one step back
@@ -33,7 +34,7 @@ code will move to git in 3 steps.
 3. local repo git push is moved to repo. we need to check the status
 git status -- will give if any files there to add/ difference between worksapce and local repo
 git log -- will have all the commit ID's  
-git show commiiID -- this will gice what happend in that commitiD
+git show commiiID -- this will give what happend in that commitiD
 git config --global user.name "geet"
 git config --global user.email "geethikapatro@28@gmail.com"
 
@@ -67,4 +68,14 @@ git checkout -b <branchname> --- directly checkouts current branch code and crea
 git branch -d <branchname>  -- regular delete
 git branch -D <branchname>  --- force delete
 
+
+---------------------------------------------------------------
+---------------------------------------------------------------
+
+Day4
+branching strategy -- a main branch and take a cut from it ,create a branch work on the changes then raise PR(Pull Request/Merge Request) to main. release and hofix branches are created as necessary.
+
+echo 'content to be added'  -- echo is to display text.
+echo 'adding data to file' > filename -- to add data to file.
+cat filename -- wil give the data inside file on console.
 

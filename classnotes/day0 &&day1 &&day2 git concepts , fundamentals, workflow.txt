@@ -35,17 +35,36 @@ git status -- will give if any files there to add/ difference between worksapce 
 git log -- will have all the commit ID's  
 git show commiiID -- this will gice what happend in that commitiD
 git config --global user.name "geet"
-git config --global user.email "geet@gmail.com"
+git config --global user.email "geethikapatro@28@gmail.com"
 
 we can add username,email etc with the above 
 
 ---------------------------------------------------------------
-----------------------------------------------------------------Day3 
+----------------------------------------------------------------
+Day2
 
 GitHub repo created 
 pushed file1 file2 from pc to git repo.
 in the intial push, it ask for gmail,password then choose email-password /pat token(git setting->deveoper settings->token classic->gice access and remove /keeep exipry and PAT created save it somewhere and use this to while trying to push).
 In our pc, our git bub mail and password will be saved in credentail manager  after 1st push. every time it will ask for the cred, if asked please provide above cred created.
 
+---------------------------------------------------------------
+----------------------------------------------------------------
+Day3
+till today we worked on our individual repo. today we push code  to devopstraininghub/b18projectrepo. 
+for that we need to have collaborations access. Settings->collaborations->add the mail
+git pull -rebase -- when merge conflict occure, like if geethika and patro are workig on same repo simulatinously. if we use rebase from geethika account, patro file will come to geethika local and  now we can pull from git.
+git branch 
+branch is a copy of data. developer will take copy of main in a branch do the required changes and test in that branch , once ready will create release branch and push it main and production.for defects post production will have a hotfix branch.
+
+git branch <branchname>   -- to create branch
+git init -- intail commit 
+touch test -- sample file
+git checkout/git switch <branchname>  -- to switch to branch
+git merge <branchname>    -- to merge
+or 
+git checkout -b <branchname> --- directly checkouts current branch code and creates a new branch
+git branch -d <branchname>  -- regular delete
+git branch -D <branchname>  --- force delete
 
 

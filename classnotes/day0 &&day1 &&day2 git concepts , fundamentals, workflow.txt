@@ -65,8 +65,12 @@ git checkout/git switch <branchname>  -- to switch to branch
 git merge <branchname>    -- to merge
 or 
 git checkout -b <branchname> --- directly checkouts current branch code and creates a new branch
+for local deletion
 git branch -d <branchname>  -- regular delete
 git branch -D <branchname>  --- force delete
+
+To delete in remote 
+git push origin -d/--delete <branchname>
 
 
 ---------------------------------------------------------------

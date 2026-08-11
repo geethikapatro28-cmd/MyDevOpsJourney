@@ -90,3 +90,33 @@ git cherry-pick commitID(get the commitID from git log command).
 
 if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
 
+for local deletion
+git branch -d <branchname>  -- regular delete
+git branch -D <branchname>  --- force delete
+
+To delete in remote 
+git push origin -d/--delete <branchname>
+
+git checkout geethika 
+git checkout geethika --   if there is a file and branch and git confused then use this command.
+
+donot practice delete onmain . so create geethika and geethika-feature branch and practice 
+=============================================================
+=============================================================
+Day5 
+
+we can use 2 commands at once.like git add . && git commit -m 'two commands at once'
+centrally deletion/ adding  we should us epush only. 
+
+
+VI Editor
+
+vim/vi/nano
+
+vim fname
+pres esc --- I (insert mode)
+
+--add data ---
+esc shift: w
+esc shift: q
+esc shift: wq

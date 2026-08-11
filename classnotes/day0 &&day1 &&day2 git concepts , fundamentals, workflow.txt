@@ -87,11 +87,6 @@ when given git log. if head->banch is the branch ahead of other main branch
 to send/push the branch created or data to the creted branch ,.command .
 git push origin/gitURL branchnameeg: git push origin windowsbranch
 git cherry-pick commitID(get the commitID from git log command). 
-<<<<<<< HEAD
-=======
-
-if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
->>>>>>> origin/windowsbranch
 
 if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
 
@@ -125,3 +120,6 @@ pres esc --- I (insert mode)
 esc shift: w
 esc shift: q
 esc shift: wq
+
+
+git config --list to check the current config of git.email id present here will be used to push /pull etc..go if want to switch then use config command and witch the email.

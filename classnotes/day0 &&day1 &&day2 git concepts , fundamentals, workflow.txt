@@ -55,6 +55,11 @@ till today we worked on our individual repo. today we push code  to devopstraini
 for that we need to have collaborations access. Settings->collaborations->add the mail
 git pull -rebase -- when merge conflict occure, like if geethika and patro are workig on same repo simulatinously. if we use rebase from geethika account, patro file will come to geethika local and  now we can pull from git.
 
+git branch
+
+git checkout <branchname>
+git 
+
 
 
 

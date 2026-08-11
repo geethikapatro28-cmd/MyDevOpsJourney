@@ -87,6 +87,11 @@ when given git log. if head->banch is the branch ahead of other main branch
 to send/push the branch created or data to the creted branch ,.command .
 git push origin/gitURL branchnameeg: git push origin windowsbranch
 git cherry-pick commitID(get the commitID from git log command). 
+<<<<<<< HEAD
+=======
+
+if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
+>>>>>>> origin/windowsbranch
 
 if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
 

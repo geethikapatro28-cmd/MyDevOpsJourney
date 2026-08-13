@@ -15,6 +15,7 @@ ls       --regular
 ll  --detailed with access 
 ls -lrth --detailed
 la -la  ---hidden files included/.
+la  -lart -- detailed with hidden!?
 
 cd dir name - to goinside directory
 cd .. -- to come out of that directory --one step back
@@ -33,7 +34,7 @@ code will move to git in 3 steps.
 3. local repo git push is moved to repo. we need to check the status
 git status -- will give if any files there to add/ difference between worksapce and local repo
 git log -- will have all the commit ID's  
-git show commiiID -- this will gice what happend in that commitiD
+git show commiiID -- this will give what happend in that commitiD
 git config --global user.name "geet"
 git config --global user.email "geethikapatro@28@gmail.com"
 
@@ -54,12 +55,118 @@ Day3
 till today we worked on our individual repo. today we push code  to devopstraininghub/b18projectrepo. 
 for that we need to have collaborations access. Settings->collaborations->add the mail
 git pull -rebase -- when merge conflict occure, like if geethika and patro are workig on same repo simulatinously. if we use rebase from geethika account, patro file will come to geethika local and  now we can pull from git.
+git branch 
+branch is a copy of data. developer will take copy of main in a branch do the required changes and test in that branch , once ready will create release branch and push it main and production.for defects post production will have a hotfix branch.
 
-git branch
+git branch <branchname>   -- to create branch
+git init -- intail commit 
+touch test -- sample file
+git checkout/git switch <branchname>  -- to switch to branch
+git merge <branchname>    -- to merge
+or 
+git checkout -b <branchname> --- directly checkouts current branch code and creates a new branch
+for local deletion
+git branch -d <branchname>  -- regular delete
+git branch -D <branchname>  --- force delete
 
-git checkout <branchname>
-git 
+To delete in remote 
+git push origin -d/--delete <branchname>
+
+
+---------------------------------------------------------------
+---------------------------------------------------------------
+
+Day4
+branching strategy -- a main branch and take a cut from it ,create a branch work on the changes then raise PR(Pull Request/Merge Request) to main. release and hofix branches are created as necessary.
+
+echo 'content to be added'  -- echo is to display text.
+echo 'adding data to file' > filename -- to add data to file.
+cat filename -- wil give the data inside file on console.
+when given git log. if head->banch is the branch ahead of other main branch
+
+to send/push the branch created or data to the creted branch ,.command .
+git push origin/gitURL branchnameeg: git push origin windowsbranch
+git cherry-pick commitID(get the commitID from git log command). 
+
+if we use merge , it merge everything to branch. but if we need to merge specific commitID then we need to use cherry-pick
+
+for local deletion
+git branch -d <branchname>  -- regular delete
+git branch -D <branchname>  --- force delete
+
+To delete in remote 
+git push origin -d/--delete <branchname>
+
+git checkout geethika 
+git checkout geethika --   if there is a file and branch and git confused then use this command.
+
+donot practice delete onmain . so create geethika and geethika-feature branch and practice 
+=============================================================
+=============================================================
+Day5 
+
+we can use 2 commands at once.like git add . && git commit -m 'two commands at once'
+centrally deletion/ adding  we should us epush only. 
+
+
+VI Editor
+
+vim/vi/nano
+
+vim fname
+pres esc --- I (insert mode)
+
+--add data ---
+esc shift: w
+esc shift: q
+esc shift: wq
+
+
+git config --list to check the current config of git.email id present here will be used to push /pull etc..go if want to switch then use config command and witch the email.
+-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+<<<<<<< HEAD
+day 5 
+=======
+day 6
+>>>>>>> 371b116 (updated till day6 running notes)
+if we are paralleling working on branch and try to merge them , then vi editor open and ask for commit message once we save and exit esc shift:wq two commitit will be seen in git log stating one for each branch.
+
+ig branch main and feature branch has file xyz and  xyz have different data/code in these files.when tryind to merge these two branches then merge conflict will arise. and can be seen in file with vi editor as <<<<<<< HEAD
+iam conflict current branch data
+=======
+iam dumbali other branch data
+>>>>>>> geethika. developer will decide and keep part of data required on the file and add  nd commit . now conflict resolved and merged.
+
+filter commands in git to ease our work
+git log -5 [5 is no of previous noof logs]
+git log --oneline [id in short form and commit message]
+git log -- author "geethika" -- work done by geethika will come
+git log -- since "yyyy-mm--dd"
+we can combine these all also as git log --oneline -5 --author 
+git commit --amend -m 'changes commit message '    --to change/modify latest commit message only 
+we can also have it as  git commit --amend -m 'changes commit message '  -m 'jiraID'
+we can also changes made with latest/previous commit with above command.
+if checked git log you can see old commitid wil be replaces=d with new one.
+
+alias-- simply shortcut  no realtime usuage actually
+
+git config --list
+git config --global alias.newlogname log
+git config --global alias.s status 
+
+to revert the alias changes 
+git config --global --unset alias.s   it will go back to git status 
+
+a new file created f1 in workspace should be stagged 1st i.e git add , 
+if changes made in  f1 can be moved to indexing commit the command for that is 
+git commit -am 'commit messageqo'
+<<<<<<< HEAD
+=======
+
+-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 
 
 
-
+>>>>>>> 371b116 (updated till day6 running notes)

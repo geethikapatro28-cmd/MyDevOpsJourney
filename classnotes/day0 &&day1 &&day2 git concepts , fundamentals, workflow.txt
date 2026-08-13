@@ -123,3 +123,37 @@ esc shift: wq
 
 
 git config --list to check the current config of git.email id present here will be used to push /pull etc..go if want to switch then use config command and witch the email.
+-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+day 5 
+if we are paralleling working on branch and try to merge them , then vi editor open and ask for commit message once we save and exit esc shift:wq two commitit will be seen in git log stating one for each branch.
+
+ig branch main and feature branch has file xyz and  xyz have different data/code in these files.when tryind to merge these two branches then merge conflict will arise. and can be seen in file with vi editor as <<<<<<< HEAD
+iam conflict current branch data
+=======
+iam dumbali other branch data
+>>>>>>> geethika. developer will decide and keep part of data required on the file and add  nd commit . now conflict resolved and merged.
+
+filter commands in git to ease our work
+git log -5 [5 is no of previous noof logs]
+git log --oneline [id in short form and commit message]
+git log -- author "geethika" -- work done by geethika will come
+git log -- since "yyyy-mm--dd"
+we can combine these all also as git log --oneline -5 --author 
+git commit --amend -m 'changes commit message '    --to change/modify latest commit message only 
+we can also have it as  git commit --amend -m 'changes commit message '  -m 'jiraID'
+we can also changes made with latest/previous commit with above command.
+if checked git log you can see old commitid wil be replaces=d with new one.
+
+alias-- simply shortcut  no realtime usuage actually
+
+git config --list
+git config --global alias.newlogname log
+git config --global alias.s status 
+
+to revert the alias changes 
+git config --global --unset alias.s   it will go back to git status 
+
+a new file created f1 in workspace should be stagged 1st i.e git add , 
+if changes made in  f1 can be moved to indexing commit the command for that is 
+git commit -am 'commit messageqo'

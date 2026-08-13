@@ -125,7 +125,11 @@ esc shift: wq
 git config --list to check the current config of git.email id present here will be used to push /pull etc..go if want to switch then use config command and witch the email.
 -------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------
+<<<<<<< HEAD
 day 5 
+=======
+day 6
+>>>>>>> 371b116 (updated till day6 running notes)
 if we are paralleling working on branch and try to merge them , then vi editor open and ask for commit message once we save and exit esc shift:wq two commitit will be seen in git log stating one for each branch.
 
 ig branch main and feature branch has file xyz and  xyz have different data/code in these files.when tryind to merge these two branches then merge conflict will arise. and can be seen in file with vi editor as <<<<<<< HEAD
@@ -157,3 +161,12 @@ git config --global --unset alias.s   it will go back to git status
 a new file created f1 in workspace should be stagged 1st i.e git add , 
 if changes made in  f1 can be moved to indexing commit the command for that is 
 git commit -am 'commit messageqo'
+<<<<<<< HEAD
+=======
+
+-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
+
+
+>>>>>>> 371b116 (updated till day6 running notes)

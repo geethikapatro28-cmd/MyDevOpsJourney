@@ -164,3 +164,103 @@ git commit -am 'commit messageqo'
 -------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------
 Day 7
+
+GIT TAG
+after acheiving a milestone like eg audiocall code completed,video call code comeplted.we can label that ads tags in git.
+this is similar to branch commands
+git tag   -- to see the tags
+git tag <tagname> commitID  -- if no commt ID provided it will take latest commitID
+git checkout tag
+git tag -d <tagname>
+git push origin <tagname>
+git push origin -d <tagname>
+
+PR Raising 
+
+we create PR in realtime for merging branches. 
+go to pull request, create pull choose source and destination . it will show the differnce and what is going to merge , then we can have reviwere/approval from right side max 14 members then.
+once approved, we can merge .
+Reviere will have a pop up sstating the details . he can approve/ add commeent s etc.. 
+then merge pull request then it will be merged.
+this PR raising will work if we are part of enterise project where we can contributors.
+
+If we want to contribute to OpenSource project then we need to fork it 
+fork cocnepts
+
+if we fork a project we will get a copy of it out git repo. 
+once we ge that repo in our rpo , we can add files/do our code .
+if we see this usuaeful to the open source project we forked, then click contribute (like a PR)then author of the Opensource will cehcka nd merge/not as per thier need.
+===================================================================================================================================
+
+Day8
+git branch protection
+
+in real time main always has prod data. so when PR raised shoukd be review by atleat 3 reviews.
+got branch settings-> and under branch rule we can write all thes steps. min reviewe required aand other things. also we can do who to force push/ etc also in it.
+
+
+we push in 2 states from local to remote repo.same way we can traverse back using git reset command.
+
+git reset --head filename  -- from commit to add(stage to worksapce)
+git reset --soft old-commitID(n-1) ---  from localrepo to stagging 
+git reset --mixed commitID(n-1)   ---- from localrepo to worksapce
+git reset --hard commitID(n-1)  -- to delete the data
+
+to temporary store the data in git we use stash commands. eg if dev is working on task1 and proirity task2 need to be worked on, then task1 can be stashed without making the work loss. task1 not comleted soc ant be commited.
+
+touch task1
+git add .
+git stash save task1 -- moves task1 to stash(temporary file)
+git stash list  -- gives stashed list with stashid
+
+to get back the stashed data back to stagging we can do 3 days
+git stash apply stashid --like copy paste
+git stash pop   stasthid -- like cut paste
+git stash drop  stashid --like delete
+
+statshing is done before commit 
+
+
+GIT MERGE ||GIT REBASE ||
+
+git merge branchname --- creats a commit id and merge 
+merges the whole with logs and history
+git rebase brnachname --- one branch will sit on another branch
+moves branchcommit on top of another branch. no istory is maintanined.
+
+====================================================================================================================================================================================
+Day 9
+Batch 18 notes repo link ---  https://github.com/devopstraininghub/BATCH18A_B18D_RUNNING_NOTES
+
+
+Git fetch -- in out pc we have origin so when used fetch the data comes till origin only not to workspace
+Try git fetch and then do lll we see it came to origin/main
+Then we need to do git merge -- to take it to local workspace.
+Instead we mostly use git pull which does both.
+Git pull -- git fetch + git merge. --- pull brings the new changes done in remote to local.
+
+
+
+GITIGNORE
+
+Vim .gitignore. creates a file name .gitignore
+Echo log > .gitignore. add log file to .gitignore file and now it wont be tracked anymore.
+Git add . && git commit -m 'ignore file'
+Cat .gitignore -- will show the data inside file.
+If we want to track the files again remove the filename from .gitignore then we are good to rtrack again.
+
+Consider Friday code worked , but midday something added and failed. We need to check and remove it  . Below are the steps.
+To rollback the changes done in a commit id 
+
+Git revert commitID(CID) --- imp feature to revert incase of something goes wrong
+
+Revert creates a new committed and reverts the changes done with a particular commit.
+
+
+Reset is to commit changes from local to remote
+Revert to rollback changes done in a commit ID.
+=============================================================================================
+
+
+
+

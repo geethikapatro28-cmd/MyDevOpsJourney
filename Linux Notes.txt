@@ -1,0 +1,62 @@
+AWS free tier account creation
+validity - 6 mmonths- or 200$
+anything with cpu RAM and storage is server. 
+go to gogle search grate aws free tier and login once creted.
+created a free account needed is a gmailid and fredit cad account to verify.
+always use n.vergina as the region and do the work post login.
+EC2-- Amazon Elastic Compute Cloud
+Amazon EC2 is a core web service provided by Amazon Web Services (AWS) that allows you to rent virtual computers—known as instances—to run your own computer applications.
+Go to EC2->launch instance->give linux server as name - choose aws linux-> instance type t3.micro as it is free eligible
+create new key-pair
+two keys created-- public key injects in awsprivate key downloads to laptop.leave the other settings as is.
+then in the network settings- we need to create firewall-? firewall is to allow whoom at which port etc.. linke securing the virtual machine
+443 should be open to connect to https  protical sites
+port is entry and exit points to server.
+
+firewall ->create new security group give a name ,description.
+as currently our is a practice type->all traffic and source type- anywhere choose it. in reality we wil choose certails porta and certain types and etc as per requirement.
+group rule  we can add as many as we can and  we can either edit or create new one. click launch instance.
+
+in left panel ->go to instance-> right click on server ->click connect.now it shows through browser or ssh.
+it has 2 options though web and sshif web is used we can use there only
+If clicked ssh ->it asks for key 
+in laptop go to gi
+open the git bash in the folder where .pem key of aws is stored.
+provide the commands provided in the aws . 
+now we are connected to the ec2 through laptop. here the public key(aws one) and private key(downloaded in pc) did handshake and logged in to the server we created.
+in gitbash type whoami
+gives ec2-user name 
+linux server ultimate user is root user
+in console  --sudo su
+it changes the user to root user.
+hostnamectl set-hostname <desired hostname>
+hotname -I   -- to check ip
+uname   -- to check osname
+uname -a   --- to check all config 
+clear
+
+Basic Linux commands
+whoami --   ec2 server after connecting server
+sudo su -- switch to root user
+pwd=present working directory path
+view
+ls
+ll
+ls -lart
+ls-lrth
+
+touch f1 g2 g3 create file touch
+mkdir dir1 dir2
+rm -rf f1 f2 --delete file
+rm -rf dir1 -- deleted folder
+rm -rf * -- to delte all -- never use
+cat f1 -- see the content in f1
+to go inside folder cd foldername/folderpath
+to come one step outside folder (immediate parent)cd ..
+
+
+
+
+
+
+

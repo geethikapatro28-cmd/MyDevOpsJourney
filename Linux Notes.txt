@@ -1,3 +1,10 @@
+
+
+Day 1 
+Demo session only explaining wha tis cloud and develops etc.. which cloud to learn etc
+===============================================================================================
+Day 2 
+
 AWS free tier account creation
 validity - 6 mmonths- or 200$
 anything with cpu RAM and storage is server. 
@@ -33,6 +40,7 @@ hostnamectl set-hostname <desired hostname>
 hotname -I   -- to check ip
 uname   -- to check osname
 uname -a   --- to check all config 
+Uptime --- tell how much time the server is up
 clear
 
 Basic Linux commands
@@ -53,6 +61,151 @@ rm -rf * -- to delte all -- never use
 cat f1 -- see the content in f1
 to go inside folder cd foldername/folderpath
 to come one step outside folder (immediate parent)cd ..
+
+===============================================================================================
+
+Day3 
+
+lscpu --Cpu count check 
+Free /free -m/ free -g. -- gives ram details
+
+User Profiles
+
+Top user in linux -root user - boss
+Admin user -- next top -- can create 
+Regular user --  permissions as per required only
+
+We can create these users in linux using below commands
+
+Useradd madhu.  -- command to create user
+Passwd madhu.   -- command to create password for user
+
+
+Sudo su - === logs in to root user
+su - maddhu === logs in as madhu user su meaning SwitchUser
+/home/<usernmae> ===  path like in windows c/users
+/etc/passwd === file has user entry details , so use cat /etc/passwd we can see the content in this file 
+
+This file contains user stanza 
+
+Example :
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+geet:x:1001:1001::/home/geet:/bin/bash
+
+Username :x: userid :usergroupID :comment :user path:were user commands execute
+
+Created feet password :geethika
+
+Here x indicates password free and we can add /not our comments .
+Root user's groupdID will be always 0.
+User mod -c "devopsuser" made
+
+Cd /home --- gives user folder . Here home is the root folder like C in windows.
+
+User del -r Kiran ----To delete the user . If -r not used , user will be delete but user data will remain.
+
+Cat /etc/group -- whenever user created , group is also created , and will be stored in this folder.
+Cat /etc/shadow contains passwords of user
+
+Wc /etc/passwd -- will give word count of the file 
+Line word count char count
+Wc-l. Only linecount
+Wc -w only wordcount
+Wc -c. Only char count
+
+If we want to see only last 3 uses only from /etc/passwd then we can use below commands
+Tail -n 3 /etc/passwd  --last 3 lines
+Head -n 4 /etc/passwd. --top 4 lines
+
+We need frame wise.. like fir to screen count 
+
+More /etc/passwd -- to see in frame
+
+Creating file commands
+
+Touch f1. -- create empty file
+Echo madhu-- print made in terminal
+Echo "madhu" > f1.  -- created f1 with madhu inside
+Need to append data in the file f1 -- echo "adding append data" >> f1. Double greater than append data.
+
+Linux has vi/nano editor. Like notepad etc in windows.
+
+Vim f1 --- created and open an editor then ,
+Press escape I -- to insert data. 
+
+Esc:w to save 
+Esc:q to quit
+
+Esc:wq -- save and quit
+Esc:q! -- force quit
+Right bottom will have which line how much dayta in bytes eg: 5,21
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day4
+
+/ in linux represents Root directory 
+Cd / then ll , we see opt,tmp etc folders . These are imp and created when os is booted
+Ll ,ls ,ls -la etc are stored in bin. Executable binaries
+Sbin --is admin bin directory it has installation, shutdown commands etc
+Boot -- files for boot
+Dev. -- device files
+Etc -- config files of user, system
+Home -- all other directories home dir is /home except root. Root have / or cd root/
+Lib,lib64 -- library files 
+Media --mounting oendrive etc..
+Mnt -- mounting
+Opt--- optional dir which have 3rd party things
+Proc ,Run,sbin,srv,sys -- let it go for now
+Root --- root directory
+Tmp --  temprary data
+Usr --
+Var -- logs storage
+
+-----------------
+We practice mostly on opt folder
+Cd opt/
+
+To install in windows we download and install
+IN Linux, we do it as yum install <softeareto install>
+Yum install git --- to install git atlas it ask if it is ok click yes then installed.
+Yum install java -- java will get installed.
+
+Cd /opt
+Create file and add some data using touch/vi editor etc
+ We can use controls x,z in windows similarly it also have shortcuts
+Press esc only it goes to command mode.
+
+Gg -- goes to toppling
+G - ground
+Yy --copy
+N-yy -- no of lined to copy
+P --paste
+Dd --delte
+N-dd no of lines to be deleted.
+Dw -- delete the word
+U -- undo 
+There are many, these are basic and must to know
+
+Go to line from which you want to copy then press escape 10yy which means 10 lines from there are copies, similar for delete. To escp. To undo escu.
+To enable line number escshiftcoulmn setnu 
+To disable line number escshiftcoulmnsetnonu
+To search line cntrlf -- escshifr: esc/madhu (searches madhu)escn-- next you can see number and position in the right down 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

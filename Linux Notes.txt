@@ -190,6 +190,36 @@ Go to line from which you want to copy then press escape 10yy which means 10 lin
 To enable line number escshiftcoulmn setnu 
 To disable line number escshiftcoulmnsetnonu
 To search line cntrlf -- escshifr: esc/madhu (searches madhu)escn-- next you can see number and position in the right down 
+
+
+if you are not admin give sudo su - unmae instead of su -uname
+mkdir -p dir1/subdir1/subdir2  --- creates nested folders. -p chcks if dir exists if not creates one.
+tree gives the pictorial respresntaion of directory
+cp -rp srcpath destinationpath --- copy file from src path to destination path
+eg : cp -rp linuxfile a/b/.  - either give name or . indicates linuxfile with same name in provided destination
+to move file/cur paste mv f3 a/file3 f3 is now moved to a folder with file3 name
+mv f2 file2 -- rename f2 to file2
+relative path -- path given from current directory
+absolute path -- path given starting from root directory 
+eg cp cherry /a/cherry
+eg: cp -rp /opt/cherry /opt/a/cherry
+cd ../../../ coming out from current is relative
+cd /opt etc is abs path
+wget <link>   -- to download in linux.
+eg: wget tomcat link
+unzip tomacat.zip ----to extract <unzip filename>
+zip dir1.zip-- to compresst o zip file <zip filename.zip>
+zip -r dirnameany.zip dirname
+
+linux mostly use tapearchive tar 
+wget linkfor tar.gz
+
+tar -xvf tomcat.tar.gz    --- to unzip
+tar -cvf tomcattar.gz appacher
+
+rm -rf dirnameany.zip /rm -rf tomcattar.gz  ---to delete any 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  
 
 

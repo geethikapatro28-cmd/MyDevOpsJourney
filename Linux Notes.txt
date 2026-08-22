@@ -219,9 +219,58 @@ tar -cvf tomcattar.gz appacher
 
 rm -rf dirnameany.zip /rm -rf tomcattar.gz  ---to delete any 
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 5
+I always use sudo for now else I am getting permission denied error in my system even though I am in root .p
 
+Class notes day wise given by madhu is available in 
+https://github.com/devopstraininghub/BATCH18A_B18D_RUNNING_NOTES/blob/main/AWS-LINUX-SHELL/20August.md
+
+Install java and tomcat
+Tomcat listen on port 8080. We opened all the port in security group so we can access.
+Cd bin
+./startup.sh   -- to start the tomcat .
+./shutdown.sh  -- to stop the tomcat
+To access take the server ip dns name from instance :port 8080 we can access now in on web browser.
+
+This is all called process to check the process command is ps
+
+Ps -ef gives all the process with corresponding command . It has id which is pid.
+We can search for process in ps -ef.
+Command is ps -ef | grep tomcat  searches for tomact in ps- ef and returns. | is nothing but append the output of ps-ef to grep tomcat is the meaning.
+Like search for tomcat in the file and give that output as inout to grep tomcat.
+
+Grep is a filter command
+Kill -9 pid forcefully killing the id.
+
+Cat linuxfile grep -I 'madhu' or grep -I 'madhu' linux file -- filter madhu with case ignoring. 
+
+To search in folder and subfolders
+Use grep -iR 'madhu'
+
+Cp -rp linuxfile bkp_linuxfile -- always take backup before doing something. ---- good practice 
+Diff filea filen tells the difference between files.
+
+Sdiff spots exact lines of where it changes
+
+Server is slowed after deploying like laptop hung in windows we see the task manager and cpu use check
+In linux top command is used to check the same. Similar to task bar
+
+Global search in windows there is find command 
+
+Find / -name linuxfile ---- in the / entire root check for name linuxfile and gives the result.
+Find / -name linuxfile -type f --- only files 
+
+Find / -name linuxfile -type d --- only directories
+
+Sed is a replace command 
+
+Sed 's/madhu/salman/g' linuxfile --- so here madhu in linuxfile is replcaed with Salman 
+If that out put to be stored in a file then  Sed 's/madhu/salman/g' linuxfile > test
+With the above commands madhu will be changes to salman but the linuxfile will be having madhu only as we are not giving the change to linuxfile. If we need linux file content also to alter then use below command
+Sed -I 's/mashu/salman/g' linuxfile  ---- here s meaning source madhu is the text to be replaced.
+Sed -I 's/mashu/salman/2' linuxfile   --- 2 indicates replace the second occurrence
+Salman is the one to replace with and g stands for global
 
 
 

@@ -341,6 +341,131 @@ Netstat will give network statistics.
 
 Netstat an |greop 8080
 If is ts listen meaning someone is using it.
+Day 7
+Inode (index node)-- is the unique identity given to a file in Linux.  It stores metadata of file. Linux tracks file using node not by file name. 
+Metadate -- filetype,size,permision,last modified etc
+
+Command : ll -I or ls -I or ll -I filename
+Like how we create desktop shortcuts and all similarly we can do in linux also.
+Both let one file "point to" another, like a shortcut — but they behave very differently.
+
+Hard link
+Yes
+Command --ln target link
+Points to the same inode (same data on disk)
+If original is deleted link still works — data isn't gone until all hard links are removed
+Shown in ll as	a normal file
+
+Soft link
+
+Command -- ln -s target link
+Points to the the path of the target file
+If original is deleted link breaks ("dangling" link)
+Shown in ll as	starts with l, shows link -> target
+
+ln /opt/app/config.yaml /opt/app/config-backup.yaml
+ln -s /opt/apache-tomcat-9.0.121 /opt/tomcat
+Sample output 
+$ ln -s /opt/apache-tomcat-9.0.121 /opt/tomcat
+$ ll /opt/tomcat
+lrwxrwxrwx 1 root root 28 Aug 26 09:10 /opt/tomcat -> /opt/apache-tomcat-9.0.121
+Easy memory trick: hard link → same file, two names. Soft link → a shortcut that can go dangling.
+
+CUT command
+
+cut slices each line by a delimiter and prints just the column(s) you want — great for structured files like /etc/passwd (colon-separated: username:password:UID:GID:description:home:shell).
+
+cut -d ":" -f 1 /etc/passwd
+cut -d ":" -f 1,6 /etc/passwd
+cut -d ":" -f 1,2,3,4 /etc/passwd
+cut -d ":" -f 1-4 /etc/passwd
+
+-d — sets the delimiter (the character that separates columns).
+-f — picks the field number(s) to print — a single number, a comma list, or a start-end range.
+
+Sample output
+$ cut -d ":" -f 1,6 /etc/passwd
+root:/bin/bash
+madhu:/bin/bash
+
+Piped version
+cat /etc/passwd | cut -d ":" -f 1,6.  --- we can pipe that out put and see in the desired way
+
+Real-time example: Pulling just the username column out of /etc/passwd to get a quick list of every account on a server — a common first step during a user-access audit.
+
+Cut -d " " -f 1 linux.  -- gives output with delimit space we need 1st from from linux file
+
+AWK command
+Awk is more customizable and powerful than cut. Below is the command.
+
+Awk -F":" '{print $1 "----->" $6}' /etc/passwd
+
+ awk — a more powerful column tool
+awk does the same job as cut but is more flexible — it can combine fields, add custom separators, and do simple text processing.
+
+awk -F":" '{print $1}' /etc/passwd
+awk -F":" '{print $1 "=" $6}' /etc/passwd
+cat /etc/passwd | awk -F":" '{print $1}'
+-F sets the field separator (like cut -d); $1, $6 refer to field 1 and field 6; print builds the output line, and you can glue fields together with any text (like "=" above).
+
+Sample output:
+
+$ awk -F":" '{print $1 "=" $6}' /etc/passwd
+root=/bin/bash
+madhu=/bin/bash
+Easy memory trick: cut → simple slice. awk → slice and reshape.
+
+To copy from one server to another here in linux we use winscp to scp for secure transfer
+
+Within server we can use cp command. But if we need from laptop to server and vice versa we should use winscp or scp.
+Ef piranhas file on desktop to linux server.
+
+Scp Command : scp srcpath destinationpath
+
+Scp -I geethkey.pem ec2-server (authentication key username) desktopfilepath servername(publicip)press shift:/temp(folder to which it should be copied)/.(. gives same name or give a desired name )
+
+Basically the second command pattern we use while using ssh.
+
+WINSCP tool
+
+Winscp is a tool that is used to do the scp work only with tool.
+Download winscp for windows/Mac OS.
+Open click next - once installed.
+
+
+Hostname take public ip or dns. Portnuber 22 for https always
+
+If have name /passwrd fine. We use the key right so clicked advanced ssh authentication choose the pen key. It only converts to ppl then we are good to use.
+
+Left side is desktop . Right side is server .
+Just drag and drop from here to there where it is needed.
+
+Detailed notes available in batch18 running notes.
+
+Ip comes through networks. This is by Nic card(ethernet cable) earlier it is given by cable , now this card is given in cable and through wifi we are seeing.
+
+Ipconfig gives this details.
+
+In linux  command is ifconfig/ ip addr
+
+
+Tomcat-serverIp:8080 is how we access tomcat. 
+In reality case of using YouTube we don't use servers we use dns name which is mapped to youtubeip
+Nslookup YouTube.com /Facebook.com etc.
+Use nslookup and your publicipname will give the I-address of it.
+
+Wget mcat url used to download tomcat .
+We have curl command also to download.
+
+Curl -o tomcat.tar.gz tomcat download link-- tomcat download with tomcat.tar.gz name
+
+If used -O capital O then same download with same name as given in download link.
+
+Mostly curl command  used to test endpoint.
+Curl -I https://facebook.com
+
+If we get response code 200 then it is working.
+Else it gives errors
 
 
 

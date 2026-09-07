@@ -272,6 +272,77 @@ Sed -I 's/mashu/salman/g' linuxfile  ---- here s meaning source madhu is the tex
 Sed -I 's/mashu/salman/2' linuxfile   --- 2 indicates replace the second occurrence
 Salman is the one to replace with and g stands for global
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 6
+
+
+Login to was server, create/start the instance. Use ssh to login
+Sudo su - 
+Hostnamectl set-hostname b18linux<desiredhostname>
+Df command -- disk file system - how much disk space is used and how much are is left.
+Linux system should be given in files and mount (attach) to some directory. 
+
+In reality df -h / or df -h/opt is usage / and /opt tells space in root an opt folders
+
+Du -sh linuxfile will tell the file size of linuxfile
+Yum install tree ---
+Du -sh aws/ --- it will give all the folders rise sh stands for sum of all in Human readable form
+Du -h aws/ ---- it will give individual size of each
+
+ differnt members will have readwrite and owner persmision to sam file.
+
+-rw- r -- r-- if has read and write
+
+O-owner
+G-group.  
+O-others
+
+r-read -4
+W- write -2
+X-execute -1
+
+Owner can have all permission and 
+Chmod ownergroupothers linuxfile. It can be given as chmod(4+2+1=7)40 linuxfile
+Meaning 7 all permission to owner 4 read to group and 0meaning no permission to others
+Cmmod 777 linuxfile
+Chmod -R 755 linux.   -R recursively meaning give permission to subfolders also.
+Chown madhu:root linuxfile -- changing owner to madhu
+
+Grouped devops --will create a group  and we can see it in /etc/group
+Usermod -aG devops ec2-user will add ec2 user to devops group
+Play chmod with numbers by giving permissions to group , owner etc.
+Chmod 700 jenkins meaning owner has all 3 and other don't have any.
+Change group of file
+Chow :newsgroup filename
+Changes both owner and group of file
+Chown newsier:newgroup filename
+Change owner and group of multiple files
+Chown -R newsier:newgroup file1 file2 file3
+------------
+Networking commands:
+To check if network is working or not in linux
+Ping will send data in packets kf all sent then site is working else you will see errors.
+Ping connectivity testing
+Ping google.com
+Ping -c 4 example.com
+--
+Traceroute google.com
+
+It will tell you where the problem is it can see hop to hop the delayed time indicates see this piece has problem.
+
+Whether the website connectable with network port
+Yum install telnet
+Telnet www.google.com 443. -- it will show success/failure. 
+
+Clear notes see in git batch 18 running notes
+Install java and start tomcat as we know from above commands. Tomcat runs on 8080 port
+
+Netstat will give network statistics. 
+
+Netstat an |greop 8080
+If is ts listen meaning someone is using it.
+
+
 
 
 

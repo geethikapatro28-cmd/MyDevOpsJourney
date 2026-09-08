@@ -467,7 +467,151 @@ Curl -I https://facebook.com
 If we get response code 200 then it is working.
 Else it gives errors
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 9
 
+
+Types of linux commands:
+sudo su -
+cd /opt
+
+id we start any service 
+yum install docker -y  ---- install docker
+systemctl status docker ----   
+systemctl start docker  ----   it will start the service . it will end once syetem restarts, give this again t start.
+systemctl enable docker----- will start in booting meaning if system restarted it automatically starts.
+
+in script file
+$#   ---- no of arguments
+$*  ------- all arguments in one string
+$@  --------- all arguments in serapte words
+$? ---- to check if laast command success output 0. if  failed : non zero number 
+
+for loop syntax see in b18 running notes
+for i in $* or $@;
+do 
+echo $i;
+done
+ you will see the differnce of $* and $@
+ 
+ shell variable --name = 'madhu' within the scriptfile 
+ local variable --if we have more than one funtions in script
+ env variable -- we want to use in session script or any other child process across OS
+ env is similar to java env variables.
+ already existing en variables we can see in env file.
+ env command or  env| grep hostname
+command to set env variables  ---- export COURSE ='awsdevops' . now course is avaible across everything in the environment
+printenv COURSE alternate to echo COURSE 
+unset COURSE -- will remove the course from env
+condition and loops
+if syntax
+if [condition]; then
+  echo ""
+elif []; then
+	echo ""
+else
+	echo
+	//lines of code
+fi  
+> is -gt
+< is -lt   
+or need to use (($age> 18))/[$age -gt 18]explore a bit on these also
+vaiarable values can be read by $varaiable
+
+loops
+for i in (1..100)
+do
+	echo $i
+done	
+--- 
+while --run till ondition is true
+i=1
+while ["$i" -le 100];
+do
+	echo "$i"
+	i=$(i+1)
+done
+---
+until loop --run condition is false
+i=1
+until ["$i" -gt 100];
+do
+	echo "$i"
+	i=$(i+1)
+done
+---
+break statement -- to come out of look
+i=1
+while ["$i" -le 100];
+do
+	echo "$i"
+	if ["$i" -eq 6] then
+	break
+	fi
+	i=$((i+1))
+done
+----
+continue statement -- will just skip that and rest will be printed  or executed
+i=1
+while ["$i" -le 100];
+do
+	echo "$i"
+	if ["$i" -eq 6] then
+	i=$((i+1))
+	continue
+	fi
+	echo "$i"
+	i=$((i+1))
+done
+details syntax is avaiable in day9 running notes.practice this with loops and coinditions
+-----------------------------------------------------------------------------------------------
+Day 10 
+
+arthimatic operations for number are common . list is availble in notes+,-,*,%,/,** double star for power 2***3 =8
+you can have these also in a script file.
+logical/boolean and string operators
+-z  to check string is empty?
+-n string is not empty
+!= not equal
+ && lofical and 
+ || logical OR
+ ! logical not
+file opearots
+-f file exists, -d directory exists, -e file or dir exists, -r readable, -w writable, -x executable, -s file not empty.
+increment-decrement and assignment operators
+set -u --- fail if you refernce a variable that is not set. eg $env is variable but as a typo $envv is called out in script.
+set -o pepefail -- makes while pipeline fail is any |commands are there given this if one pipe failes then all fails.
+set -euo -----we can declare this also for all things to executecat fb.loof  grep "error"
+
+in is used to check in a set of values.
+for user in (all users use cut command to get the user info.
+path variable tells linux where to search.
+eg: path  =/usr/binpath
+
+functions
+syntax
+function function_name{
+command 1
+command 2
+}
+or
+
+function function_name()
+{
+command 1
+command 2
+}
+
+ if we need to execute same code  repetead of more than one time then we can use funtions
+examples find in running notes 
+cpu usuage command ==top
+top Bn1| grep %Cpu(s)
+real time examples of these are listed with commands in notes.
+Bn1  meaning batch snap of that.
+free -m gives space
+----------------------------------------------
+day 11 interview questins discussion
+rea the b18 notes provided and check the task, pdf and questions notes. then you will get a grip 
 
 
 

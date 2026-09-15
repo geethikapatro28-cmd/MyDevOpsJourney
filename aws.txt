@@ -48,4 +48,123 @@ Now server2 which is in another zone
 Then we can detach it from server1 here by right clicking on volume and attach to server2 or we can do one more,
 Take the backup of voulem1 which is called snapshot and attach it it server2. Now both will have the same .
 Bought -- if I made changes n volume 1 after backup , will it reflect automatically in snapshot or I need to take the fish backup if something change in v1 and to be reflected to v2. 
+mkdir madhu
+mount /dev/nvme1n1 /madhu
+it is now applyting the created block space to madhu directories
+now create files.folders etc to madhu.. this will be present in madhu directories
+we can take the backup of existing which we call call snapshot and attach to another server.
+
+rightclick on snapshot, create snapshot in details sgive a name , in tags give a name and backup will be gone s3,
+we can also create volume from snapshot. right click on snapshot, create voulme and do the voulme steps here, vnow voulme1 and voulme2 are back up to each other. add this voulme 2 to another server instance after creating one. and follow the same steps mount it to server and you can see voulme1 created files in voulme2 whi h is server2 also.
+create a voulme in mumbai and create asnapshot and attach it to another server in another region.
+
+so this backup concept, with EBS if we delete abc file in voulme1server1.
+snapshot volume2 is attached wont be deleted .
+EBS will not ahve that concept.
+
+we have another concept where we can have a centralized space, once any modificatins done, then it will reflect other.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day3 | EFS vs EBS | NFS & Mount Targets
+we need to have shared space which can accessed to all 3 servers. modificatin ic common spcae results in changes in all 3 servers.
+this can be solved by using EFS(ELastic File Storage)
+
+In linux we have shared mounts (NFS)and they will share. same pattern in AMazon is reffered as EFS
+
+Go to AWS -->Amaozn EFS->filesyatem->create.
+this is region specific and can also be shared on single availability zone.
+give a name, keep vpc as is,click customize-> here check either regional or availability zone specific  use regional for practice so we can use across multiple zones in same region.
+life cycle mangament will discuss later
+classifications  based on used frequenct.
+standard-- mostly used
+infrequent -- lightly used
+archive --- rarely used
+in network access
+now, choose the mount tagets 
+choose the zones in which we are trying to mount this efs.
+select security group available in each zone.
+
+file syatem policy is like permission we can give for now leave it blank. create.
+
+
+now create ec2 instance servers in two availablity zones of same region.
+
+now we need to mount the EFS to the created servers using bewlo steps.
+click on ttach on the right side on efs,
+copy the commands presnet , opne cmd and login to aws via ssh for bothseveres.
+hostnamectl set-hostname server1/server2 as required. 
+sudo su -   ---> to go to root user
+copy the command given in attach and paste in server1 and serve2
+we will get error as efs is not avaiable so create mkdir efs.
+yum install amazon-efs-utils -y   -- it should be there before trying to use the copy command from attach else will get errors.
+df -Th  now we can see file syatem mount to /root/efs
+if we are in some abc folder the abc/efs wil come better do in root to avoid clumsynes.
+now play around by creating some files and folders . deleting some files and folders in both server1 and server2. and this is reflected in both the severs now both the severs acts as actual backup of each server.
+
+when to use EBS and EFS
+EFS is a bit slow as it needs network and etc..
+EBS(eg pendrive) is less costly compare to EFS(eg google drive).
+realtime example you can find the running notes of that day in git hib of mindcircuit b18 running notes
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 4 | AWS Load Balancer|httpd web server setup
+
+why we need load balancer?
+if one server gets down, we need other server  to send the desired  output.
+in aws we have ELB (elastic load balancer), which distributes the load to differnt target systems.
+log in aws consile, left panel we can see loadbalancers.
+1st need to leran how to configure webserver.
+install httpd package which allows webserver things.
+yum install pkg_name -y  -- to install the service package
+systemstl start httpd   -- to start the service
+systemsctl status /stop/restart  httpd --- to check the staus of service
+systemctl enable httpd
+code /vat/www/html/index.html -- example :sample html sevice which we are using .
+here create instance  and choose avaibility zone and other etc.. and create minumon 2 no of instances(choose from right ).
+rename fb1 and fb2. connet through ssh to both servers in local.
+sudo su - ==>to go to root in both
+install http package yum install httpd -y
+start it systemctl start httpd
+systemsctl status /stop/restart  httpd --- to check the staus of service
+systemctl enable httpd
+
+copy its public ip/dns:80 in browser  you will be able to access.
+now go to  cd/var/ww/html/
+create index.html here and write anythig example for now echo "<h1>i am fbserver</h1>" > index.html
+some html syntax basically
+to code good  go to browser open facebook .com right click code copy and page in file using vim index.html paste it here with insert mode.
+take any sample page.
+you can aslso ask gpt to create a page for you and take the code and paste it here in yout index.html page.
+
+difference between aws ec2 and webserver.
+ec2 is a emplty server. we can fill it with anything now we are using it for webserver. we can use it as db server, middleware server etc.
+------------------
+In Load balancers
+create target group .
+go to create target group ->name it b18 targetgroup-> http port -> health checks- index.html will have the data , so give this in health check. give a timeout-> 3 sec for example.
+unhealthy threshold: meaning if healthcheck fails continuousky give n(eg:2) , then we call it unhealthy node meaning dont sned request here.
+also healthy threshold checking n(eg:2) nof of times continous success , then consider it as healthy node.
+in how much timeintervak it should check is interval like 5 sec or 30 sec etc.
+success code: set it to 200.
+register target add it here the 2/more  severes created. click create target group.
+--------------
+Load balancer
+ we have differnt types of load balancer.
+ for http/https we called use application layer load balancer. it is also called layer7 load balancer. http protocal is in 7th layer in network architecture so called layer7 load balancer.
+ 
+click create-- give a name --> intenet(over the whole network) /internal(with in college/company)
+network mapping:
+where these are avaiable -- pick where the servers are avaialble the same region/zones accordingly.
+add the target group  we created here. create . once done /in review also we can see whole configurations.
+you will see th loadbalancer DNS co[py and paste it in sever , we can see now.
+we cannot idenify which server it is goinf at the moment right, just for trouble shooting , make a small change like text/ some note like server1/server2in one of the servers and now load the pages(refresh) we can see from which server it is coming.
+create multiple servers in multiple regions and play around create target group and check it.
+
+purposely  stop any server using systemctl stop server2. now 1st time itgives  502 bad gateway then it omes from server1 which is avaiable. in raltime also it is same.
+deregister the target from AWS UI in target groups  now slowy requests will be moved fto other server it is called draining.
+consider we down the avaialble zone itselft it gives 503 service avaiable eventhough service is avaialable.
+
+consider the site is giving offer and we have more  data coming., these hots we can see in requests in monitor sections.
+so if there is a slae we increase the server based on architecture design and etc.
+ 
+after practice terminate everything, load balancer, target group and servers,ebs ,efs everything we did.
 

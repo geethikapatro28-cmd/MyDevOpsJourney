@@ -1,0 +1,51 @@
+AWS DAY1
+
+same as linux aws . creating the aws free tire account and exploring ec2
+
+DAY2 EC2+ EC2 +EBS +EBS snapshots
+Was has two IP's one is public  for public people and in house  access  it with private IP.
+Touch 
+Whom
+Sudo su -    to work as root use
+Login through either ssh or web browser to connect ec2 instance.
+
+Consider we have 2 server in two different regions,
+ Can we add extra storage to server. Yes it is called volume /block volume. Like how we add pen drive /external harddsik to computer smilarly.
+When we create the ec2 instance  we will have  some v=block volume (eg:8GB)
+If we need to add any extra to it go to elastic block store in the aws UI
+
+In terminal post ssh login 
+Command -lsblk
+Now we have to most (add) the ebs(elastic block store) to our ec2.
+Ebs tp be attached to be created in the same availability zone of ec2 server.
+
+Steps:
+
+Volume settings:
+Type -gps sp3
+Gib -take 1 /2 for now the more he more bill
+Availity zone - same zone as server 
+
+Tags-  give a name like easy to attach -- us-east1-a in class.
+
+To attach this volume to any instance. Right click on volume -- attach - add the instance details. Select the instance you want to add , in device name add /dev/sdf or any which is available. Now vol1 will be changed status to in -use
+
+Now if we to lsblk, we can see the attached volume. But in order to use it we have to mount it .
+Use df -H (to see the file ssystem)and you cannot see this details in there without mounting(attaching).
+We need to create file system structure to the extra 1gb then we can use it.
+Steps:
+
+Mkfs -t ext4 /dev/nvme1n1. (Make filesystem ext4 is a file system type -t type  /dev/nve1n1 is volume name)
+Mkdir madhu.
+Mount dev/nvme1n1 madhu.  -- it will mount the voulme(ebs) to madhu folder
+Now if we do df -Th it will be showed in file type and now we can use it through madhu.
+
+
+Cd madhu
+Touch chair Venky balayya etc files (consider we added 1 gn files will be stored to 1gb)
+
+Now server2 which is in another zone 
+Then we can detach it from server1 here by right clicking on volume and attach to server2 or we can do one more,
+Take the backup of voulem1 which is called snapshot and attach it it server2. Now both will have the same .
+Bought -- if I made changes n volume 1 after backup , will it reflect automatically in snapshot or I need to take the fish backup if something change in v1 and to be reflected to v2. 
+

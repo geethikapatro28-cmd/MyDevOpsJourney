@@ -201,7 +201,8 @@ EC2 launch template:
  view launch instane and you can see , this way everything is a ready to cook kust give no of instance needed.
  try adding these serveres if needed  in load balancer.
  create target group then add this to ALB, now use the last class notes to create load balancer. use this ip in browser the dns name, it is disctribued across 4 servers in target group for eg. load balancer does not need port 80. if you ant to see which server  it using  just change some data in one of the servers it is to debug only. in realtime all serveres wil be identical.
- 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 6  ASG |SNS
  now we have 10 instance avaiable with same base project. example, we now there is more demand  we need to increase the server no, when load decread servers need to be dropped down. this can bea chieved by autoscalling.
  minimum capacity is 1. max capacity  is 10 (min and max is decided by architect).desired count is also there which aws will fix as below.
  aws will check for  current no if avaible services and desired count if current =2 desired count is 3. if load increases it will add 3 more serveres which is current +desired. (2+3=5). if current is 5 and desires is now 1 then current-desired (5-1 =4) will be server count. this way autoscalling works.

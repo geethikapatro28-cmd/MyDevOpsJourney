@@ -194,5 +194,58 @@ Name,ami,key-pair, network-security group, instance type,voulme.
 
 Now we customized AMI, instead if we want all the above parameters to come without giving manual , we need to use create launch template.
 
+EC2 launch template:
+ 
+ crete launch template - give a name(mc-lt) and we can add version to it as v1, v2 etc.., give a tag and select mc-ami which is custom, t3- and in kep pair choose geethkey and storage  etc as per the requirement, click create launch template.
+ 
+ view launch instane and you can see , this way everything is a ready to cook kust give no of instance needed.
+ try adding these serveres if needed  in load balancer.
+ create target group then add this to ALB, now use the last class notes to create load balancer. use this ip in browser the dns name, it is disctribued across 4 servers in target group for eg. load balancer does not need port 80. if you ant to see which server  it using  just change some data in one of the servers it is to debug only. in realtime all serveres wil be identical.
+ 
+ now we have 10 instance avaiable with same base project. example, we now there is more demand  we need to increase the server no, when load decread servers need to be dropped down. this can bea chieved by autoscalling.
+ minimum capacity is 1. max capacity  is 10 (min and max is decided by architect).desired count is also there which aws will fix as below.
+ aws will check for  current no if avaible services and desired count if current =2 desired count is 3. if load increases it will add 3 more serveres which is current +desired. (2+3=5). if current is 5 and desires is now 1 then current-desired (5-1 =4) will be server count. this way autoscalling works.
+ Load can be anything. server cpu % , ram usaugae, no of req count on load balancer etc.. we can have a threshold count on which autoscale occurs.
+ 
+ we need to prepare a launch templated prior and  based on that it will autoscale. also we need a sms/mail noditication eveerytime autoscale occur.  this service is called SNS. we cover this topics and create them as below.
+
+ ec2- launch template- we can create new/ modify the existing as per neeed. dont add avaiablity zone in launch template. autoscale will deicde based on demand.
+  
+ EC2- autoscaling
+  give a name , mc_as, then next network -> new instance should be in multiple avaiability zone  to avoid down time.
+  availability zone disctribution -new
+  balanced best effort --chooses suitable as per it's intelligence. balanced only-- will try to create in same az if failed , reservation the blance- in other az if failed . choose  balanced best effort.
+  load balancer all keep default.(no load balancer)
+  health checks as we new if health check fails it will change/create new instance(server).
+  scaling min 1 max 10 desired capacity 2 in the intial later autoscale will decide.
+  choose autoscaling policy as per need like avd cpu utilization( to check keep 25%), instance warmup- 300 sec example is a booting/helath check time. 
+  scaleIn -- delete the old server when not needed.
+  scale up-   adding on load. by checking the box, only scaleup will occur, no scale in.
+  instance maintaince policy -- keep none for now -- read about these in details.
+  keep the rest as is for now.
+   add noticication(simple notification service) -- send a  notification to --   and email name -- provide as per need, select the events below all.
+   give a tag if you wnated. now create scalling . intially it will create 2 which is our desired count ans AZ will be as per it's choice.
+once done,  isf sns chosen, mail will come, subsribe on/ verify it for 1st time.
+-----------------
+
+To test autoscaling working or not, follow below steps.
+In windows we can do it as below.
+ open cmd/gitbash..  type yes, it will come yyyyyy which increase the cpu load and keep on doing it with multiple gitbash and yes.. will increase the cpu load.
+/dev/null is called black file -- as it observes everything it takes, do yes > /dev/null this 
+we can do the same in linux as below
+go to ecs .. connect  as ec2-user in  webbrowser
+top  -- to check cpu usause and all  
+yes >/dev/null &   --- command to load cpu
+do this in 2 servers created. check Top again you can see load increased.
+now you can see new servers created nad desired capacity increased after some time. and all the servers will have the browser dats.
+as we are using free/community huilder account , 10 cant be created  as default is 8. so if we need more serveres, mail aws we need which is not needed now. just copy the error and ask gpt for more details .
+
+to teminate thee kill -9 pid --- now kill all the yes magic for testing in all serves. now cpu utilization decreaes and slowly servers count decrease which is again autoscaling.
+cpu count for each is provided in the launch instance time in t3.micro we have *2.
+activity screenshot/desired count screenshot paste it in group.
+ 
+ 
+  
+
 
 

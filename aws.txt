@@ -167,4 +167,32 @@ consider the site is giving offer and we have more  data coming., these hots we 
 so if there is a slae we increase the server based on architecture design and etc.
  
 after practice terminate everything, load balancer, target group and servers,ebs ,efs everything we did.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day5 AWS-AMI-Launch Template
+
+AMI -- Amazon Machine Image-- it gives us a server/ec2 image which we can nothing buy givings computer feel but in cloud.
+Login to AWS
+Create a EC2 - use ssh login /login
+Sudo su -  go to root 
+Cd /opt -- opt is an optional folder 
+Yum install https -- install it 
+Systemctl enable http/systemctl start https --- start the server
+Create a html page using get/own keep the html code inside cd /var/ww/html/ index.html then start it and use that ip:80 in browser we can use it.
+Now if asked to have such 100 pages, we cannot manually go eveytime and and do, instead we should a create a custom AMI to automate this steps and the required code we can do changes in index.html if any.
+Data,package and service packed in a server can be created as custom AMI with OS and data+package+service with below steps:
+
+Go to instance -> right click->create image ->give a name mc-ami
+Give a tag, volume if any needed, also note image creation process crates a snapshot automatically as instance is now acts as a backup.
+
+Now go to instance -- now it will reflect our custom AMI, so choose that from MY-AMI. Do the same as wd create a server. Choose instance no >2/more as per ask.
+ 
+Connect it through ssh/webclient. Here in copy we will see appt change it to ec2-user as ourpem works for ec-user. Then later login to sudo su - root user.
+
+Paramaters required to create instance
+Name,ami,key-pair, network-security group, instance type,voulme.
+
+Now we customized AMI, instead if we want all the above parameters to come without giving manual , we need to use create launch template.
+
+
 

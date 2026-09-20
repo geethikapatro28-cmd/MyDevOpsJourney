@@ -244,6 +244,24 @@ as we are using free/community huilder account , 10 cant be created  as default 
 to teminate thee kill -9 pid --- now kill all the yes magic for testing in all serves. now cpu utilization decreaes and slowly servers count decrease which is again autoscaling.
 cpu count for each is provided in the launch instance time in t3.micro we have *2.
 activity screenshot/desired count screenshot paste it in group.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day7 VPC
+earlier we have physical server with os and all later virtualization came into pictur. here also we have server, memory etc. which is Vmware, with viryalization we can divide in multiple segments(machines) and each machine can have 10 when in total we have 100.
+clean notes avaiable in vpc notes , please go through :P
+virtual machine physical servers are some where in datacenter.
+cloud should gauarentee data of each company is not specified across . so we in aws we have concept of vpc, virtual private cloud(VPC). which is a shared responsiblity. aws will not allow communication with serves, if comapny wants  they can establish the communciation between servers.
+CIDR
+
+In a network a resounce identity is Ip address. ipaddress is provided via CIDR.
+10.81.0.0/16 eg : these are not numbers these are octals.
+1 byte- 8 bits (01010101)
+4 bytes - 4*8 -32 
+16 meaning 1st 16 is fixed. meaning the ip range would be as below
+ 10.81.0.0
+ 10.81.0.1
+ 10.81.0.2
+ 10.81.0.3 ................................ 10.81.0.255
+ likewise we have many ip ranges.. with one CIDR definings.
  
  
   

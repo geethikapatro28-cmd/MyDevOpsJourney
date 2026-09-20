@@ -304,6 +304,31 @@ Ll
 Vim key.pem
 Copy the content from key in laptop and paste in this file. Give commode permission to the key copied and then use the connect command use private vpnm as it is within vpc.
 After practice delete, instance and delete VPC vpc deletion delete all the RT, subnet etc created as part of this. Then double check to avoid any data loss.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+Day 8
+to enable communication between server's we have peering.
+create vpc- select vpc and more. 10.81.0.0/16
+1 AZ, 1 public subnet(connect to route table), and a internet gateway,customizing the ip is also possible here.
+subnet choose 10.81.1.0/24.
+similarly create one more VPC. one for facebook and one for insta VPC.
+by default facebook and insta have no communicatoin. now establish peering like bluetooth connect.
+now create ec2  instance with fb vpc of insta and facebook and connect to it by ssh /web browser.in vpc, go to vpc peering. give a name.
+selct local peer gb to insta i.t from and to . create. if we have to connect connectin  from differnt account that is also possible , juust give the account  details with it.
+go to RT-- add route-- if insta sends dats-- facebook should handle. and similarly do in insta also, if facebook sends data, insta handle. and save.
+create a vpc in mumbai region- cretae a ec2 instance whatsapp. and choose the created vpc, sg , create keypair and save it.
+
+key-pair is region specific and SG is vpc sepecific. connect to this whatsapp ec2.
+lets establish peeriing between fb and whatsapp inter regional.
+this time chose another region, copy vpc id accepter as mumbai vpc . requester is facebook from noth vergina.
+establish routes of fb and whatsapp, in fb -? add new route4 from whatsapp fb will hadnle and in whatsapp add fb cidr and save. now for checking use ping pvtip of fb , insta and whatsapp in each other and check. now we can connect from one ec2 to another ec2 with above steps.
+peering is not trasitive, it.e a->b b->c this doesnot mean a->c..
+copy public ipof fb,whatsapp,and insta.
+in fb installl(yum) httpd systemctl start httpd, in vim /car/www/html index.html and write welcome fb.
+copy the publicip:port, now it is accessable to ouside world.stop the fb server. the stopped servrs dont have public ip.now start again, now public ip differs.and for accessing use the new ip/port.
+so everytime a ip changes, we cannot go and change it to all users. if we need a fixed public ip which is static we need to pay aws for static(elastic IP). to go there, go to elastic IP's network and secirity.
+create a ip, region , give a nameinstance choose facebook if wanted.. now a fixed ip is provided to users. it wont be changing after stop.
+so, give elastic ip and port to it and we can use/stop/start it anytime, no change will be added.
  
  
   

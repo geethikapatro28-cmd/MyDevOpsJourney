@@ -254,14 +254,56 @@ CIDR
 
 In a network a resounce identity is Ip address. ipaddress is provided via CIDR.
 10.81.0.0/16 eg : these are not numbers these are octals.
+One number represents 1 byte. Above is 4 bytes. 16 is bits here.
 1 byte- 8 bits (01010101)
 4 bytes - 4*8 -32 
+
 16 meaning 1st 16 is fixed. meaning the ip range would be as below
  10.81.0.0
  10.81.0.1
  10.81.0.2
  10.81.0.3 ................................ 10.81.0.255
- likewise we have many ip ranges.. with one CIDR definings.
+
+10.81.0.0 /8
+10.81.0.0/16
+10.81.0.0/32
+
+ likewise we have many ip ranges.. with one CIDR defining.256*256 =65.536 65k 
+Likewise we can call each set  and call it subnet. This subnet we have public and private subnets 2 in each.
+
+1. We will create a vpc.
+2. Internet gateway
+3. Subnets 4. (2 will be enough, just for clear understanding creating 4)
+4. Route table
+5. Configure
+
+Practical
+ Go to aws console--> in search VPC- do not touch default which is provided by AWS , create our own.
+Give a name, ipv4 cider block - five a range(10.81.0.0)
+Go to internet gateway from left panel -?create. Right click attach to our vpc.
+Subnets -- each avaiablaity has a subnet for default provided by aws.  
+For our we create subnets in two AZ and Each AZ has 2 subnet 1 private and one public for practice.
+Create subnet-> keep adding subnet count in settings. Give the a name PUB_SN-1A,Pvt_SN-IB,2A,2B. Choose the AZ.
+Give a range-> 10.81.1.0/24, 10.81.2.0/24,10.81.3.0/24 ,10.81.4.0/24 
+There will be default routings , create one for our won.
+Route table-->create- give a name,
+10,.81.0.0/0 -- meaning any ip there is no fixed.
+By default all subnets are private. When subnet are added I. Public subnet it is called public subnet.(routable association).
+Route tables- add public subnet we want in explicit subnet associations, now it is public subnet.
+
+Now go to EC2-> create instance-> in network settings-> don't use default, instead choose the our own vpc with public subnet here and enable auto assign ip-> enabled , create a security group as the old SG we are using in for another VPC. When VPC changes it will be different SG, select key pair and done. Similarly create one instance for private also . Here auto assign ip will be default disable, just to show us enable. 
+Now  connect through ssh/web browser , but we can connect to public but we wont be able to private.
+Will get connection timeout error for private.
+To keep data inside private how?
+Within the network (VPC) -> we can connect to private subnet and playground.
+So, connect to public and from there try accessing private.
+Hostnamectl set-hostname pubsrv. Connect in public ping private  it will success, 
+Now copy the ssh commands we use to connect but default it will be public ip change it to private and connect.
+It will throw error as key in in laptop , not server. Now copy key from laptop to server.using winscp/ copy commands.
+Ll
+Vim key.pem
+Copy the content from key in laptop and paste in this file. Give commode permission to the key copied and then use the connect command use private vpnm as it is within vpc.
+After practice delete, instance and delete VPC vpc deletion delete all the RT, subnet etc created as part of this. Then double check to avoid any data loss.
  
  
   

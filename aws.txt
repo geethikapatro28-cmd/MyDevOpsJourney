@@ -329,7 +329,44 @@ copy the publicip:port, now it is accessable to ouside world.stop the fb server.
 so everytime a ip changes, we cannot go and change it to all users. if we need a fixed public ip which is static we need to pay aws for static(elastic IP). to go there, go to elastic IP's network and secirity.
 create a ip, region , give a nameinstance choose facebook if wanted.. now a fixed ip is provided to users. it wont be changing after stop.
 so, give elastic ip and port to it and we can use/stop/start it anytime, no change will be added.
- 
+
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day 10 AWS MiniProject
+
+private subnet cant be accessed directly anytime, so need a public subnet which is dummy called baston/jump subnet, which should be connected with private via route tables. 
+private subnet has no intenet  by defauly. if has to be established it can be done by NAT Gateway.
+NAt Gateway will mask the provate serverIp and give a static ip to public by ElasticIp.
+load balancers will be placed in public subnet and target servers are placed in private.
+so consider fb is hosted on private server which is in targetgroup and load balancer is kept in public and it should be handled by autoscaling as per request coming/load giving.
+the aws documentaion for aws miniproject is avaialble in aws documentation,Link is provided in batch18 running notes.
+
+login aws console->create VPC(vpc and more), cidir block 10.81.0.0/16
+follow the diagram as mentioned in document and create 
+a AZ NAt Gateway zonal and 1 per AZ,2 public and 2 private each in AZ. 
+NAT is always created in public subnet only.
+create targetgroup for load balancer, currently it will be with zero targets.
+attach it to loadbalancer with our own vpc and avaiablity zones where vpc is there. and load balancer should be always there in public subnet.
+create Security group as it is 1st time in the vpc, all traffic, froward to freshly created target group.once load balancer is up and running, check the dns in server but there wont be any for now.
+now go for autoscaling, for this we need a launch template. go to ec2->launch template-> aws linux crete one with all the requirements. network -> choose out vpc and dont choose AZ, as we need it to be created by aws inteligence.
+in advanced userdata, add  your server related page like inde.html in cd /var/www/html
+in gpt ask, provice userdata script  to deploy httpd in aws linux server  in index.html simply say "hi from geethika in it ". just some sample data. tweek it to add server hostname in it just to know from whichs server it is coming , as load balancer is attached, it might come from multiple severs.
+now got o autoscalinggroup,  chose the above launch template,  in network our vpc, chose in az and subnets private subnets(2).
+in load balancer, 2nd option , give our load balancer, chose the derired, minumum and etc , refer ASG notes and create a SNS also,and create.
+in load balancer now, give the DNS , then it will give the data which we provided in userData.
+if any issue comes in data, or server not working as expected, then we need to debug.
+
+in ec2 lets create a jump/baston server which is for public.
+go to ec2-> aws linux, vpc should be ours , subnet take anyone public and create  with giving security group and all.
+now connect to jump server,using either ssh /web browser.
+sudo su -,hostname to jump and ping google , it will come as public has access to internet.now give the pem key do vim geetkey.pem and copy paste the key from laptop.In this server, and gvie chmod permision here and  copy the private server sudo and paste in public server console now we can connect to private through public as there is now conenctivity between them.
+now in private server conenct and check and try ping google.com , it will have access to internet as we have NAT gateway attached to it.
+it can access the network and others , but through internet we can access the private server .
+
+to have more clairty go to route table of private server, remove nat gaeway route, then pvt server cannot access internet. and add it again for recheck, will be able to access again internet.
+we can downlaod git, appache and all other necessary servers. in real time, we do the same.
+after practice make sure, you delete everything you practice.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  
   
 

@@ -330,7 +330,61 @@ so everytime a ip changes, we cannot go and change it to all users. if we need a
 create a ip, region , give a nameinstance choose facebook if wanted.. now a fixed ip is provided to users. it wont be changing after stop.
 so, give elastic ip and port to it and we can use/stop/start it anytime, no change will be added.
 
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Day 9 AWS-SG-NACL-ENI
+
+Delete all the vpc peering created, ec2, peering , route tables and vpc and everything in all regions.
+Never ever touch the default vpc provided any region.
+Create a ec2 instance, default vpc has auto assign public ip is available.use sg and all which re old/create new as per you choice.
+Click on advanced details in network, we use user data. We install https package and enable/start it and in index.html we write our code.
+We can write these commands in user data.
+Yum install https -y
+Echo "this is sample " > /var/www/html/index.html
+Systemctl start httpd
+Systemctl enable httpd
+
+Here only the fb server intiates.
+Server's ultimate defense is SG. So port enabled in SG, then only public can access this port. This is called incoming traffic.
+Data sent from server, which is this is sample  is outbound traffic.
+-----
+Instead of creating it while instance creation, we can also create separately in security groups.
+
+Give a name, description.
+Inbound rules-- instead of giving all traffic, we give type ssh, https, mysql and any particular Ip, like DB will route through a specific Ip only these all should be configured.
+
+For outbound there are no rules, it's like meeting CM needs protocol , but CM can meet you anytime CM wants.
+Debug ig app is not working
+1. Check app is running/not using ping. 
+2. Check index.html has correct and correctly mounted.
+2. Give top command to check CPU Usage.
+3. Network , check inbound rule, check http/https, ssh enabled. If the ip through which you are accessing is enabled or not in inbound.
+ Do changes needed here if any, then we can easily trouble shoot and solve the error.
+Security group is stateful. Inbound rule provided, no need to give the outbound rule. Meaning the same path is allowed for both inbound and outbound.
+The security mechanism at server level is called Security Group.
+------
+NACL
+ Consider we have 3 servers, 2 by devops and 3 by user and user allowed all ports now how we can control it. User server will be used by many detest etc.. 
+The security mechanism at subnet level is called NACL.
+NACL is stateless , here inbound and outbound traffic is different, lowest number gets highest priority.
+Click on vour vpc->network ACLs, click default, open it will have 6 subnets.
+By default it allows all, so now we can add deny this port also here. -> edit inbound give a lowest no  , paste the Ip and choose deny. Make sure it 100 ia having all traffic, your custom will have number <100 , else it wont be applied. As lower number has greater priority.
+Play around this by allow/deny multiple protocol and ip , will be useful for practice.
+
+Network has multiple servers which is uniquely identified with ip address.
+Ip's attached to servers in a comment which is called NIC Card.(network interface). AWS calls it ENI. Elastic Network Interface(ENI)
+In Windows Ipconfig will give wifi /cable connected.
+So all the SG, ip everything is attached to NIC card.
+A server have multiple IP(public,provate.SG and etc). Some applications  demand multiple IP's. In such cases we need to attach one more network interface.
+In Linux ifconfig will have the features .
+EC2->Netwrok interfaces-> give a name-> no need to set any type ENA-> subnet chose where server is there. 
+SG - our won choice SG, create network interface.
+Actions->attach->chose the vpc and instance. It will have extra IP.
+Check ifconfig we can see extra IP for this server. No we can use the app in the newly given Ip also.
+-------
+NAT Gateway, private server does not have internet access, so to enable Internet in private, we need NAT gateway. Will discuss about these in later classes.
+ 
+ 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Day 10 AWS MiniProject
 

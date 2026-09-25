@@ -449,5 +449,59 @@ now go to user/group-choose custom policy and give the custom policy you created
  aws policy generator : i am policy ytpe, effect:allow.deny.
  aws ec2->actions,add resouce arn here and add statement, policy created.
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day 12
+
+IAM USER- has built-in  and custom-made policies also. It has action, effect, andresource is ARN .
+IAM has roles -- IAM roles will be discussed later. 
+IAM is global as this deal with user, globally it should have same.
+VPC ,KEY-Pair, EBS are region-specific.
+
+Storage services
+EBS,EFS likewise we have Simple Storage Service (S3).
+It is highly available as it is available across multiple regions.
+S3 is highly available, scalable and cost-effective.
+Probability of missed object stored in s3 is 0.000000001% , so object is never lost.
+It has many classifications.
+Data used regularly, temporarily, or rarely can be stored in different storage services.
+
+Go to console->S3-> data/object stored in space is called bucket.
+Go through the video provided above . Go through he connect and aws docs also for better understanding.
+
+S3 is regional service and naming should be globally unique.
+S3->buckets-> create bucket.
+General purpose -> choose a region-> give a bucket name-> give a tag and create a bucket.
+ Upload anything file.folders or any. We can also drag and drop by clicking on upload.
+Object cant be directly accessed.it should be given access.
+Once created we get ARN->amazon resource name , s3 URI and tag if any and object url which we use to access it in browser.
+Bucker level, go to permission remove all block public access, now gate is open at bucket level.
+
+In object ownership edit and  enable all enabled. And ownership bucket owner preferred.
+Now to to object and see edit access control list and give the access to whomsoever needed.
+We can also enable versioning.
+Go to properties and edit bucket versioning and enable.
+Now upload the abc file with changes in 2 or more versions, if enabled we can see as v1 and v2. Else it existing  data will be overrides.
+To see the older versions, enable show versions. And you can see all the versions of the file.
+To deletion, select, delete-> we can undo the deletion if versions enabled. Deletion marker an versionId is created for it. If want to retrieve, click on delete marker and delete now, it is available.
+To delete permanently, type permanently delete it is deleted all for good. If versioning level it is deleted It is gone for good. 
+-----
+We can host static website on s3 also like we do in EC2 and s3 is cheaper compare to S3.
+
+Go to s3- buckets-static website hosting-> edit enable-> host a static website.
+Index document
+index.html.  --- our page content.
+error.html.  ---  page when's one error occurs. And save it.
+Dynamic website meaning--content changes every time eg siwggy displays menu based on our previous order etc.
+Static website-- same html page for all time and anybody-no matter how many times and to everybody.
+It will give a url through which we can access our page. Take astatic website code from get or give some simple data for your index.html  and some error message for error.html.
+Go to s3, add these two files in s3. Now provide access --> go to s3 buckets. Bucket policy---edit
+Aws policy generator-> bucket policy, prinicple * action a* and bucket name take the arn of our bucket, generate policy. Copy the content and in resource : arn/* add /* extra and paste in bucket policy. Save changes. Try accusing the page with the url provided above, will be able to access the status website through s3.
+
+
+
+ We have storage classes in s3 standard meaning regular usage.
+
+
 
 

@@ -421,8 +421,33 @@ to have more clairty go to route table of private server, remove nat gaeway rout
 we can downlaod git, appache and all other necessary servers. in real time, we do the same.
 after practice make sure, you delete everything you practice.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Day11 IAM 
+theory find in inb18running notes,you cant give uname pwd to everyuser joins, so we set authenticationa nd wutherization limits to user based on thier roles. 
+generally users with same/similar roles are grouped and that group will be given specific permision.
+
+login to condole ->IAM Users -- create user.give  ausername and password, check it needed to changed afgter sometime or conntue with the same.
+set permissions- for now dont give any permisiions, review and create. iam user created.
+a link will come in console signin links, in sign in user IAM login and give the username and password provided to login.
+if you check this profile, as no permision is given , user is denied from everything. to give permission , in set permission atach dpolicy eg: admin right or anyother as required.now user will be able to launch instance etc.
+ we can also send outlook mail with the given uname ,password etc.. which is realtime .
+ we cna group all developers, testes etc in a group,
+ IAM -user groups- select the users and set the permisions eg:admin as per ask,created user group.
+ user can be part of multiple groups.User inherit permission from all the groups he is part of. (A union B).
+ the policy will have a json file which holds all this permission data.
+ action:  * s3:*/* etc meaning s3 all buckes etc
+ effect: allow
+ resource: * all the resources allowed, so simply chise the policy from ui and json is created automatically.
  
-  
+ eg: ramani should have ec2  starta nd stop access only, then how we can do?
+ attach policy directly->if no default polisy there, then we can have custom policy for requirement like above as below.
+ 
+IAM->policy->create-> ec2-, action allowed-> start , stop , describe -> resouce , instance we can give region and instance name, give a name, and create instance.
+copy the json created, we can also do it by changing the json also. go thorugh notes you will get it.
+now go to user/group-choose custom policy and give the custom policy you created.
+ to do it through json-> choose json instaed of visual,, in right side chose the action on ec2: start , stop. add resource ec2 instance region: id add resouce and one policy ready.
+ 3rd way
+ aws policy generator : i am policy ytpe, effect:allow.deny.
+ aws ec2->actions,add resouce arn here and add statement, policy created.
 
 
 

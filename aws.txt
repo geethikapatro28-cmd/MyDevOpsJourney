@@ -497,10 +497,80 @@ Static website-- same html page for all time and anybody-no matter how many time
 It will give a url through which we can access our page. Take astatic website code from get or give some simple data for your index.html  and some error message for error.html.
 Go to s3, add these two files in s3. Now provide access --> go to s3 buckets. Bucket policy---edit
 Aws policy generator-> bucket policy, prinicple * action a* and bucket name take the arn of our bucket, generate policy. Copy the content and in resource : arn/* add /* extra and paste in bucket policy. Save changes. Try accusing the page with the url provided above, will be able to access the status website through s3.
-
-
-
  We have storage classes in s3 standard meaning regular usage.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Day13 
+AWS S3 CLI
+
+We have different storage classes. 
+Standard-- frequently accessed
+Intelligent tiering--  data will be sent to storage class as per use
+Standard-IA --- infrequently used
+Onezone -IA. --
+Glaciar instant. --- old logs I=f and then used
+Glacier flexible. ---  very old, like rarely used -- less cost and min 90days storage --
+Glacier deep archive. -- archival
+Reduced redundancy.  ---
+ Based on storage class time of data retrieval and cost of storage depends. These are maintained in multiple available zones as per storage.
+
+We can automate this procedure instead of keeping the data I specific storage class.
+Using LigeCycleManagement we can do that.
+Go to bucket->lifecycle configuration->create->
+Lifecycle rune->define here data -to which storage- when should move to that storage .
+Eg:create ->name->choose scope logs/apply all etc..  ->
+1 option-> apply one current version->check the charge applied box, choose the days  after which it should move, id you want to retain any version choose and likewise we can add many transitions as per need/ask.
+Transer current /non current/expire days in my project I have 60 days .
+Set all the transitions required and create rule, we can enable/disable rules as per usage.
+To delete the s3 Bucky, we need to empty the bucket first and delete the bucket.
+Consider we have multiple JIra with same kind of work which reptitative we cannot go and create each. We need to automate it it can be done by aws CLI.
+AWS CLI is an abstraction layer of API's through which we need to invoke other infrastructure /instance etc..simple CLI commands which we use and it will internally call the API's through scripts . Generally we need to have python /shell script for that, but in AWS we don't need to burner much. We can give simple commands and AWS will take care of rest.
+AWS CLI is a pythons based utility by aws.
+
+Aws --version
+Aws s3 mb <bucketName>.  -- mb is make bucket -- to create bucket.
+Here we have access key and secret access key for accounts and region and availability zone.
+
+Install aws cli in Mac/windows through browser. Click nextand finish.  
+After installation to verify use aws --version.
+We need to configure authentication  and autherization. in reality  these are done by IAM user accounts. Not root. Now lets do it with root as we are everything here.
+Go to to right ->click on picture->security credentials,  create Accesskey and secret Accesskey download and save somewhere safe and do not share this.
+In git bash
+Aws configure
+It will ask for secretly and access key provide and region give us-east-1
+Default output format -json for now.
+By this all the things we do on GUI like creating instance, bucket etc can be done through here. This terminal has all the power of root user in gut as keys are generated with root user.
+Command. ----aws stat get-called-identity, will give account user etc details for confirmation.
+Now create a bucket -name should be globally unique.
+Aws s3 mb s3://madhubox. -- to create bucket with name madhibox
+Aws s3 cp source destination. -- to copy (upload in GUI)
+Aws s3 ls. --list all the buckets
+
+Go to your desktop local not aws terminal and copy the path of file to be copied and s3 detonation where we need to upload. For copy s3 command. Eg. Aws s3 dekstop/abc s3-path and viceversa to download .
+Aws s3 rb s3://bucketname / --force (to empty and delete).
+
+Aws cli is mostly used in syncing. Like we need to sync laptop and s3.
+Aws s3 sync test/ s3://bucketname ---> syncs test folder with the bucket-- meaning file/folder not present in s3 compare to test iscopied to bucket.
+
+Similarly we can create ec2 instance and other functions also.
+Her instead of s3 we will have c2.
+
+Aws ec2 **command*** check the b18 running notes we will find better. Ec2 creation needs more data in command, in that same we use terraform.
+Aws cli is used for adhoc (quick addon's).for large like min project etc automation we use cloud formation/terraform. Terraform is covered in course but not cloud formation.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day14 IAM Role-Database 
+
+IAM role is like a new user.
+EC2 instance and S3 cannot talk to each other unless some connection is there. Consider I have instance running in ec2 and logs to be stored in s3 for less costly.
+ A hiidden .aws folder will be created when secret access are download to laptop.if it is personal laptop it's fine else red will be exposed outside. 
+
+
+Create an instance in ec2 with all the steps. Make it web server by enabling httpd or adding userdaya for httpd and create an index.html in var/ww/html.
+It is generating many logs. This logs has tp be stored in s3.
+Open in ssh ina terminal and do this check aws --version and you will see no cloud access is there for it.
+In another terminal aws configured.
 
 
 

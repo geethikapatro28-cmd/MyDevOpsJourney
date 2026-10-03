@@ -559,7 +559,6 @@ Her instead of s3 we will have c2.
 Aws ec2 **command*** check the b18 running notes we will find better. Ec2 creation needs more data in command, in that same we use terraform.
 Aws cli is used for adhoc (quick addon's).for large like min project etc automation we use cloud formation/terraform. Terraform is covered in course but not cloud formation.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 Day14 IAM Role-Database 
 
 IAM role is like a new user.
@@ -570,7 +569,23 @@ EC2 instance and S3 cannot talk to each other unless some connection is there. C
 Create an instance in ec2 with all the steps. Make it web server by enabling httpd or adding userdaya for httpd and create an index.html in var/ww/html.
 It is generating many logs. This logs has tp be stored in s3.
 Open in ssh ina terminal and do this check aws --version and you will see no cloud access is there for it.
-In another terminal aws configured.
+In another terminal aws configured. we can see and if we ls -la which gives hidden folders alos will have the cred we stored which is not ideal.so instead create a iam user/role.
+rm -rf .aws folder delete it.
+aws sts get-caller-identity will no longer available. instead of this lets create IAM role, EC2 service need S3 access. let s create a role and give s3 full access and attach it to ec2 .
+IAM role -user name and pwd and key will be fenerated which is also rotation every 6 months and is not stored in any server.
+go to IAM role-> create-> trusted entity aws service-> usecase->ec2 service-> 1st option and permission amazons3 full access->give a name-> in polict jsonwe can see action:assumerole->create role.
+instance->right click modify IAM role -?choose the new role created and attach. now use aws sts get-caller-idenity in ec2 instance ssh terminal /web cli. it will give the details of aws 
+now do aws s3 ls
+create logs folder and add files here .
+aws s3 sync logs s3://madhubox  --- file in logs will move now to s3 bucket.
+acess will be there till someone manually changes the permission , else ec2 user will always access to s3. eventhough keys rotate every 6 months, access wont be revoked.
+---------------------------------------------------
+Database ---collection of data 
+structured data-- tables(schema,row-coulmns)
+semi structure -- json form-key value pair data
+un-structured --amazons3, hadoop,elastisearch etc-- ony for storing purpose mostly
+RDBMS- linking through join and forein key mysql,postgres,amazon rds,amazon auora etc.
+AMAZON provide Database as service it is called RDS(). it gives give instance and connect and use it as an applicatonRelational DataBase Service
 
 
 

@@ -586,6 +586,32 @@ semi structure -- json form-key value pair data
 un-structured --amazons3, hadoop,elastisearch etc-- ony for storing purpose mostly
 RDBMS- linking through join and forein key mysql,postgres,amazon rds,amazon auora etc.
 AMAZON provide Database as service it is called RDS(). it gives give instance and connect and use it as an applicatonRelational DataBase Service
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Day15 AWS RDS MYSQL
+
+AWS provide database service called RDS which is fully managed by AWS, it is highly available.it is min 2 db will be managed when created, one is for primary mother acts as a standard like backup we can condor it. Proving all time avaialbilty .
+Go to aws console search aura.. it is just db which is newly introduced for faster usage.
+Auora and RDS. -- choose sandbox as it is practice-> it has single AZ for sandbox.. and rest models are used in prodcution,
+ Take a version 8.4.9, give a name, and thecredentials 
+ db has uname and pwd. It has secret manager service in aws which store the password/self managed. --for now use self managed, choose the auth name-password , instance configuration t4g.micro default don't change, storage 20 ,
+Additional storage enable check and 100GIb if 20gn=b full, then it will come.
+Connectivity:
+Db should ve present in private subnet.
+fE-BE-DB is the regular right. So db should not exposed publicly.  Take default vpc and and a subnet then for now just check public access for practice, choose SG, and 3306 deport will be there by default.
+Monitoring 
+Cloud watch we can use, if it should be enabled, then we need a ham role establish database and cloudwacth service to talk with each other if we choose monitoring it IAM Role will autocrat.
+Additional info:
+Give a db name / if nor given no db created., it will have group, if dat need to be encrypted then we have kms service witch will do encryption.. add backup check, tags choose all if needed,enable backuo retention period and window no preference, we can replicated backup in another region heck checking,
+We can enable maintenance window enable deletion protection to avoid database deletion by ,mistake done, after this click create DB. A password,uname will be generated will be seen on  db creation view details. to connect DB we need uname,pwd, port 3306 should be open in SG and need a hostname for the same.
+
+To connect DB we have multiple ways mysql work,sqlelctron,postgres etc..
+
+Download sqlelectron- it will route to git, download .exe file and install it. Then click and connect it with details port , denture, name, password, test it..if failed something is wrong in db creation, once succcess  it will open DB, we can create tables, insert data, alter it and many more here.
+Benifits of RDS and why etc are listed in b18 23sep running notes, please go through.
+Here in sqlelctron,  have dbevaer with me, use and try connecting and use the create query etch listed in notes to have the DB tables and rows created.
+Tabels name should be unique and no duplicate will be crated . We can have primary key if needed, and unique id we give for each auto increment for id's etc.
+Delete after practice- to do that disable deletion protection.
 
 
 

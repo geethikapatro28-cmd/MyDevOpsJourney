@@ -612,7 +612,24 @@ Benifits of RDS and why etc are listed in b18 23sep running notes, please go thr
 Here in sqlelctron,  have dbevaer with me, use and try connecting and use the create query etch listed in notes to have the DB tables and rows created.
 Tabels name should be unique and no duplicate will be crated . We can have primary key if needed, and unique id we give for each auto increment for id's etc.
 Delete after practice- to do that disable deletion protection.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Day16 
+AWS Route53
+In real world we don't give url's instead we give name odf site, which is is called DNS (domain name service).
+Route53 is a DNS provided by AWS.in general DNS port name is 53. Database is 3306, http is 80/8080 and https is 443. So AWS named it route53. In market there are other dns providers available like goDaddy , hostlinger also.
+
+Got o AWS, search route53 it has dns management, availability monitoring and domain registration. Route53 is a bit costly when compare to other like go daddy , hosteling. While registering, it is &16 per year which will have 10 years and renew and get will add, but it is costly so dont do here.
+Lets take a go daddy domain which will cost 200/100 . Madhu recommended to purchase the domain.
+Go to GoDaddy, sign in click on left side godly logo, search for desired eg:b18fb.shop or any, .com, .org are costly so take less expensive one,dont subscribe for any additional/domain protection service.pay review and continue purchase.it is generally provided by client , lets do it to learn ourself. Once it is created then lets post it in aws route53.comeback to route53, click on hosting zones, give domain name, description internal(eg within college)/public. And create.
+
+In go daddy go to dns if your, copy the name server we had from route53 in go daddy and continues done, likewise we updated the ns. Ns will take time, unto max 48 hrs. To conform these ns are widely  available globally, go to dns checker website, give the name and you will be available to see then it is available.
+Meantime lets create w web server, got to ec2->instance -> choose the default vpc and add user data telling some welcome notes. And create 2 instances. If user data problem , the cd /var/www/html index.html. after installing https in it.
+Now lets serve through Load balancer, for it create target group, add these servers and create ALB and add TG to ALB.now a DNS name will come for ALB, but it'snot catchy name, so lets map it with the domain name we purchased.
+Now to to route53 and where you hosted the domain purchased, create record, give a name, we can have h=sub host also here, record type- a -routes to an ipv4 and address and some aws resource, route traffic to, we can give the ec2 instance ip here, but we want to host via load balance, so lets enable alias ,to application and classic Load Balancer, select the zone east-1 mostly where it is there, elect simple routing and create record. It also should be propagated it will be quick. And once it is sun and when someone access it with domain name, people should see out website. We can setup heakthchekup and and all the things we do for regular website to this also. Lets see all h=these while doing the project. And go through the b18 running notes for better understading.
+Record is an entry . Once it is added, then only traffic will route to this when someone will search for domain, it will come and launch in page we added.
+IPV6 is 4 octals.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
